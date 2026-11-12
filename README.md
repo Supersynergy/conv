@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/social-preview.png" alt="conv social preview" width="100%">
+  <img src="docs/assets/social-preview.png" alt="conv" width="100%">
 </p>
 
 # conv
