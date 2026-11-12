@@ -55,13 +55,26 @@ conv notes.md notes.pdf         # Markdown to PDF through pandoc/typst
 
 Typical benchmark examples from the included M4 Max run:
 
-| Task | Result |
-|---|---:|
-| MKV to MP4 remux | `0.18s` |
-| HEIC to JPEG | `0.20s` |
-| WAV voice to MP3 V2 | `0.21s`, 95% smaller |
-| PNG to JXL q85 | `0.49s`, 98.4% smaller |
-| Typst to PDF | `0.22s` |
+<details>
+<summary><strong>📋 Show 5 entries</strong></summary>
+
+- **MKV to MP4 remux**<br>
+  Result: `0.18s`
+
+- **HEIC to JPEG**<br>
+  Result: `0.20s`
+
+- **WAV voice to MP3 V2**<br>
+  Result: `0.21s`, 95% smaller
+
+- **PNG to JXL q85**<br>
+  Result: `0.49s`, 98.4% smaller
+
+- **Typst to PDF**<br>
+  Result: `0.22s`
+
+</details>
+
 
 See [BENCHMARKS.md](BENCHMARKS.md) for the full data and caveats.
 
@@ -80,15 +93,32 @@ ffmpeg -c:v h264_videotoolbox -b:v 2000k  277% output ratio
 
 ## Tool Map
 
-| Command | Use |
-|---|---|
-| `conv <input> <output>` | Convert one file with automatic routing |
-| `conv_info` | Show detected CPU, RAM, VideoToolbox, and defaults |
-| `convall <src> <dst>` | Batch convert files in the current directory |
-| `optimg <files...>` | Optimize PNG/JPG files in place |
-| `optall` | Recursively optimize images in parallel |
-| `smartencode <video> [low/med/high/lossless/auto]` | Encode video with named quality targets |
-| `resize <image> <width>` | Resize through `vips` or `sips` depending on profile |
+<details>
+<summary><strong>📋 Show 7 entries</strong></summary>
+
+- **`conv <input> <output>`**<br>
+  Use: Convert one file with automatic routing
+
+- **`conv_info`**<br>
+  Use: Show detected CPU, RAM, VideoToolbox, and defaults
+
+- **`convall <src> <dst>`**<br>
+  Use: Batch convert files in the current directory
+
+- **`optimg <files...>`**<br>
+  Use: Optimize PNG/JPG files in place
+
+- **`optall`**<br>
+  Use: Recursively optimize images in parallel
+
+- **`smartencode <video> [low/med/high/lossless/auto]`**<br>
+  Use: Encode video with named quality targets
+
+- **`resize <image> <width>`**<br>
+  Use: Resize through `vips` or `sips` depending on profile
+
+</details>
+
 
 Powered by `ffmpeg`, `vips`, `gifski`, `oxipng`, `pngquant`, `jpegoptim`, `cjxl`, `avifenc`, `cwebp`, `typst`, `pandoc`, `sox`, `sips`, `ImageMagick`, `ab-av1`, and `mediainfo`.
 
@@ -96,13 +126,56 @@ Powered by `ffmpeg`, `vips`, `gifski`, `oxipng`, `pngquant`, `jpegoptim`, `cjxl`
 
 `conv` initializes once per shell and exports conversion defaults for your machine.
 
-| Profile | Hardware | H.264 | H.265 | AV1 | AVIF | Parallel | Resize |
-|---|---|---:|---:|---:|---:|---:|---|
-| Ultra | M-series Ultra | `6000k` | `5000k` | `p6` | `s4` | 8 | `vips` |
-| Max | M-series Max | `4000k` | `3000k` | `p8` | `s6` | 6 | `vips` |
-| Pro | M-series Pro | `4000k` | `3000k` | `p8` | `s6` | 4 | `vips` |
-| Base | M1/M2/M3/M4 | `3000k` | `2500k` | `p10` | `s8` | 2 | `sips` |
-| Intel | Intel Mac | `libx264 -crf 23` | `libx265 -crf 28` | `p12` | `s9` | 2 | `sips` |
+<details>
+<summary><strong>📋 Show 5 entries</strong></summary>
+
+- **Ultra**<br>
+  Hardware: M-series Ultra<br>
+  H.264: `6000k`<br>
+  H.265: `5000k`<br>
+  AV1: `p6`<br>
+  AVIF: `s4`<br>
+  Parallel: 8<br>
+  Resize: `vips`
+
+- **Max**<br>
+  Hardware: M-series Max<br>
+  H.264: `4000k`<br>
+  H.265: `3000k`<br>
+  AV1: `p8`<br>
+  AVIF: `s6`<br>
+  Parallel: 6<br>
+  Resize: `vips`
+
+- **Pro**<br>
+  Hardware: M-series Pro<br>
+  H.264: `4000k`<br>
+  H.265: `3000k`<br>
+  AV1: `p8`<br>
+  AVIF: `s6`<br>
+  Parallel: 4<br>
+  Resize: `vips`
+
+- **Base**<br>
+  Hardware: M1/M2/M3/M4<br>
+  H.264: `3000k`<br>
+  H.265: `2500k`<br>
+  AV1: `p10`<br>
+  AVIF: `s8`<br>
+  Parallel: 2<br>
+  Resize: `sips`
+
+- **Intel**<br>
+  Hardware: Intel Mac<br>
+  H.264: `libx264 -crf 23`<br>
+  H.265: `libx265 -crf 28`<br>
+  AV1: `p12`<br>
+  AVIF: `s9`<br>
+  Parallel: 2<br>
+  Resize: `sips`
+
+</details>
+
 
 Overrides:
 
@@ -114,14 +187,29 @@ CONV_KONAMI=1 conv in.mkv out.mp4
 
 ## Repository Layout
 
-| Path | Purpose |
-|---|---|
-| [converter.sh](converter.sh) | Main shell implementation |
-| [install.sh](install.sh) | Homebrew dependency install and shell wiring |
-| [uninstall.sh](uninstall.sh) | Removes installed files and shell hook |
-| [skill/universal-media-converter.md](skill/universal-media-converter.md) | Agent skill for Claude Code / GG Coder style workflows |
-| [BENCHMARKS.md](BENCHMARKS.md) | Benchmark table and Pareto findings |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Benchmark and PR guide |
+<details>
+<summary><strong>📋 Show 6 entries</strong></summary>
+
+- **[converter.sh](converter.sh)**<br>
+  Purpose: Main shell implementation
+
+- **[install.sh](install.sh)**<br>
+  Purpose: Homebrew dependency install and shell wiring
+
+- **[uninstall.sh](uninstall.sh)**<br>
+  Purpose: Removes installed files and shell hook
+
+- **[skill/universal-media-converter.md](skill/universal-media-converter.md)**<br>
+  Purpose: Agent skill for Claude Code / GG Coder style workflows
+
+- **[BENCHMARKS.md](BENCHMARKS.md)**<br>
+  Purpose: Benchmark table and Pareto findings
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)**<br>
+  Purpose: Benchmark and PR guide
+
+</details>
+
 
 ## Agent Integration
 
