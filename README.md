@@ -17,6 +17,8 @@ conv input.any output.any
 
 `conv` routes video, audio, image, and document conversions through the fastest available local tool for your Mac. It detects Apple Silicon vs Intel, RAM tier, VideoToolbox support, and safe parallelism, then applies defaults learned from 55+ local benchmarks.
 
+[🚀 Quickstart](#quickstart) · [🎬 Try it](#try-it) · [🗺️ Tool map](#tool-map) · [⚙️ Profiles](#adaptive-profiles) · [🔒 Limits](#limits)
+
 ## Quickstart
 
 ```bash
